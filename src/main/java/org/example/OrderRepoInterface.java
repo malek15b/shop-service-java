@@ -1,6 +1,6 @@
 package org.example;
 
-import java.util.Map;
+import java.util.List;
 
 public interface OrderRepoInterface {
 
@@ -10,5 +10,5 @@ public interface OrderRepoInterface {
 
     public Order getSingle(String orderId);
 
-    public Map<String, Order> getAll();
+    public List<Order> getAll();
 }

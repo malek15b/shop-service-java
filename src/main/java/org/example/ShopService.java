@@ -5,21 +5,21 @@ import java.util.List;
 
 public class ShopService {
 
-    private final OrderListRepo orderListRepo;
+    private final OrderRepoInterface orderListRepo;
     private final ProductRepo productRepo;
 
-    public ShopService(OrderListRepo orderListRepo, ProductRepo productRepo) {
+    public ShopService(OrderRepoInterface orderListRepo, ProductRepo productRepo) {
         this.orderListRepo = orderListRepo;
         this.productRepo = productRepo;
     }
 
-    public ShopService(OrderListRepo orderListRepo) {
+    public ShopService(OrderRepoInterface orderListRepo) {
         this.orderListRepo = orderListRepo;
         this.productRepo = new ProductRepo();
     }
 
     public void addOrder(List<Product> products) {
-        int orderSize = this.orderListRepo.getOrders().size();
+        int orderSize = this.orderListRepo.getAll().size();
         Order order = new Order("o" + orderSize, new HashMap<>());
         for (Product p : products) {
             Product product = productRepo.getProduct(p.id());
@@ -30,6 +30,6 @@ public class ShopService {
                 return;
             }
         }
-        orderListRepo.addOrder(order);
+        orderListRepo.add(order);
     }
 }

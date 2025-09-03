@@ -1,25 +1,39 @@
 package org.example;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class OrderMapRepo implements OrderRepoInterface {
+    private Map<String, Order> orders;
+
+    public OrderMapRepo(Map<String, Order> orders) {
+        this.orders = orders;
+    }
+
+    public OrderMapRepo() {
+        this.orders = new HashMap<>();
+    }
+
     @Override
     public void add(Order order) {
-
+        this.orders.put(order.id(), order);
     }
 
     @Override
     public void remove(String orderId) {
-
+        this.orders.remove(orderId);
     }
 
     @Override
     public Order getSingle(String orderId) {
-        return null;
+        return orders.get(orderId);
     }
 
     @Override
-    public Map<String, Order> getAll() {
-        return Map.of();
+    public List<Order> getAll() {
+        return new ArrayList<>(orders.values());
     }
+
 }
