@@ -7,6 +7,7 @@ import java.util.Map;
 
 public class OrderMapRepo implements OrderRepoInterface {
     private Map<String, Order> orders;
+    private Integer currentId = 1;
 
     public OrderMapRepo(Map<String, Order> orders) {
         this.orders = orders;
@@ -19,6 +20,7 @@ public class OrderMapRepo implements OrderRepoInterface {
     @Override
     public void add(Order order) {
         this.orders.put(order.id(), order);
+        currentId++;
     }
 
     @Override
@@ -34,6 +36,11 @@ public class OrderMapRepo implements OrderRepoInterface {
     @Override
     public List<Order> getAll() {
         return new ArrayList<>(orders.values());
+    }
+
+    @Override
+    public Integer getCurrentId() {
+        return this.currentId;
     }
 
 }

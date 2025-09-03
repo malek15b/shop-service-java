@@ -1,6 +1,6 @@
 package org.example;
 
-import java.util.HashMap;
+import java.util.ArrayList;
 import java.util.List;
 
 public class ShopService {
@@ -18,13 +18,12 @@ public class ShopService {
         this.productRepo = new ProductRepo();
     }
 
-    public void addOrder(List<Product> products) {
-        int orderSize = this.orderListRepo.getAll().size();
-        Order order = new Order("o" + orderSize, new HashMap<>());
-        for (Product p : products) {
-            Product product = productRepo.getProduct(p.id());
+    public void addOrder(List<OrderLineItem> lineItems) {
+        Order order = new Order(orderListRepo.getCurrentId() + "", new ArrayList<>());
+        for (OrderLineItem item : lineItems) {
+            Product product = productRepo.getProduct(item.getProduct().id());
             if (product != null) {
-                order.products().put(p.id(), p);
+                order.orderLineItem().add(item);
             } else {
                 System.out.println("Bestellung nicht möglich: Product existiert nicht.");
                 return;
