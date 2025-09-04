@@ -14,18 +14,20 @@ public class ShopService {
         this.productRepo = productRepo;
     }
 
-    public void addOrder(List<OrderLineItem> lineItems) {
+    public Order addOrder(List<OrderLineItem> lineItems) {
         Order order = new Order(UUID.randomUUID().toString(), new ArrayList<>());
         for (OrderLineItem item : lineItems) {
+            System.out.println(item.getProduct());
             Product product = productRepo.getProduct(item.getProduct().id());
             if (product != null) {
                 order.orderLineItem().add(item);
             } else {
                 System.out.println("Bestellung nicht möglich: Produkt existiert nicht.");
-                return;
+                return null;
             }
         }
         orderListRepo.add(order);
+        return order;
     }
 
     public void setQuantity(OrderLineItem orderLineItem, int quantity) {
