@@ -17,7 +17,6 @@ public class ShopService {
     public Order addOrder(List<OrderLineItem> lineItems) {
         Order order = new Order(UUID.randomUUID().toString(), new ArrayList<>());
         for (OrderLineItem item : lineItems) {
-            System.out.println(item.getProduct());
             Product product = productRepo.getProduct(item.getProduct().id());
             if (product != null) {
                 order.orderLineItem().add(item);
