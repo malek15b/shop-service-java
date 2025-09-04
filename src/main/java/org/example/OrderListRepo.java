@@ -6,7 +6,6 @@ import java.util.List;
 public class OrderListRepo implements OrderRepoInterface {
 
     private List<Order> orders;
-    private Integer currentId = 1;
 
     public OrderListRepo(List<Order> orders) {
         this.orders = orders;
@@ -19,7 +18,6 @@ public class OrderListRepo implements OrderRepoInterface {
     @Override
     public void add(Order order) {
         this.orders.add(order);
-        currentId++;
     }
 
     @Override
@@ -41,10 +39,5 @@ public class OrderListRepo implements OrderRepoInterface {
     @Override
     public List<Order> getAll() {
         return this.orders;
-    }
-
-    @Override
-    public Integer getCurrentId() {
-        return this.currentId;
     }
 }

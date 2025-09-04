@@ -2,13 +2,14 @@ package org.example;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 public class Main {
     public static void main(String[] args) {
         ProductRepo productRepo = new ProductRepo();
-        Product p1 = new Product("1", "Apfel", 0.5);
-        Product p2 = new Product("2", "Banane", 0.8);
-        Product p3 = new Product("3", "Handy", 253.55);
+        Product p1 = new Product(UUID.randomUUID().toString(), "Apfel", 0.5);
+        Product p2 = new Product(UUID.randomUUID().toString(), "Banane", 0.8);
+        Product p3 = new Product(UUID.randomUUID().toString(), "Handy", 253.55);
 
         productRepo.addProduct(p1);
         productRepo.addProduct(p2);

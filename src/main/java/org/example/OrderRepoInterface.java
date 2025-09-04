@@ -11,6 +11,4 @@ public interface OrderRepoInterface {
     public Order getSingle(String orderId);
 
     public List<Order> getAll();
-
-    public Integer getCurrentId();
 }
