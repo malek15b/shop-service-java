@@ -19,7 +19,13 @@ public class ShopService {
         for (OrderLineItem item : lineItems) {
             Product product = productRepo.getProduct(item.getProduct().id());
             if (product != null) {
+                product = product.subStock(item.getQuantity());
+                if(product == null) {
+                    System.out.println("Bestellung nicht möglich: Produkt ist nicht auf Lager.");
+                    return null;
+                }
                 order.orderLineItem().add(item);
+                productRepo.addProduct(product);
             } else {
                 System.out.println("Bestellung nicht möglich: Produkt existiert nicht.");
                 return null;
